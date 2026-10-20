@@ -1,0 +1,19 @@
+{
+  "name": "cli-task-tracker",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "format": "npx prettier --write ."
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^8.7.3"
+  },
+  "devDependencies": {
+    "prettier": "3.9.10"
+  }
+}
