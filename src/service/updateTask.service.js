@@ -19,9 +19,6 @@ export async function updateTask(id, status) {
 
     console.log('A tarefa foi atualizada com sucesso!');
   } catch (err) {
-    throw new AppError(
-      err?.code || 'UNKNOWN_ERROR',
-      err?.message,
-    );
+    throw new AppError(err?.code || 'UNKNOWN_ERROR', err?.message);
   }
 }

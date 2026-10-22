@@ -6,19 +6,11 @@ export async function fetchAllTasks() {
   try {
     const dirname = import.meta.dirname;
 
-    const dbPath = path.join(
-      dirname,
-      '..',
-      'db',
-      'db.json',
-    );
+    const dbPath = path.join(dirname, '..', 'db', 'db.json');
     const tasks = await fs.readFile(dbPath, 'utf-8');
 
     return JSON.parse(tasks);
   } catch (err) {
-    throw new Error(
-      err?.code || 'UNKNOWN_ERROR',
-      err?.message,
-    );
+    throw new Error(err?.code || 'UNKNOWN_ERROR', err?.message);
   }
 }

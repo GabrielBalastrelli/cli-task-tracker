@@ -8,3 +8,9 @@ export async function updateQuestion() {
 `;
   return await askQuestion(menu);
 }
+
+export async function choiceIdTask() {
+  const choiceTask = `Informe o Id da Task: `;
+
+  return await askQuestion(choiceTask);
+}

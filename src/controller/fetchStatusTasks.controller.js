@@ -1,5 +1,6 @@
 import { fetchAllTasks } from '../service/fetchTasks.service.js';
 import { showTask } from '../views/showTask.view.js';
+
 export async function fetchStatusTasksController(status, inIncompleteTask) {
   try {
     const tasks = await fetchAllTasks();
