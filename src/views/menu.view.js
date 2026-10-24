@@ -5,6 +5,8 @@ import { fecthAllTasksController } from '../controller/fetchTasks.controller.js'
 import { askQuestion } from '../utils/askQuestion.js';
 import { fetchStatusTasksController } from '../controller/fetchStatusTasks.controller.js';
 import { updateTaskController } from '../controller/updateTask.controller.js';
+import { deleteTaskController } from '../controller/delete.controller.js';
+
 const menuOptions = `
         1 - Criar nova tarefa 
         2 - Marque uma tarefa como em andamento ou concluída
@@ -12,6 +14,7 @@ const menuOptions = `
         4 - Liste todas as tarefas que foram realizadas
         5 - Liste todas as tarefas que não foram concluídas
         6 - Liste todas as tarefas que estão em andamento
+        7 - Deletar Tarefa
         0 - Sair
         `;
 
@@ -39,6 +42,9 @@ async function selectOptMainMenu() {
       case '6':
         await fetchStatusTasksController('in progress', false);
         break;
+      case '7':
+        await deleteTaskController();
+        break;
       case '0':
         console.log('Saindo da aplicação...');
         return false;
@@ -46,7 +52,19 @@ async function selectOptMainMenu() {
         throw new AppError(404, 'Opção Inválida!');
     }
   } catch (err) {
-    throw new Error(err?.code || 'UNKNOWN_ERROR', err?.message);
+    console.log(`
+      Ocorreu um erro: 
+      Codigo: ${err?.code}
+      Mensagem: ${err?.message}`);
+
+    const op = await askQuestion('Deseja voltar ao menu inicial? (S/N) ');
+    console.clear();
+    if (op == 's') {
+      mainMenu();
+    } else {
+      console.log('Encerrando...');
+      return 0;
+    }
   }
 
   return true;
@@ -60,5 +78,5 @@ export default async function mainMenu() {
     inContinue = await selectOptMainMenu();
   }
 
-  rl.close();
+  console.clear();
 }

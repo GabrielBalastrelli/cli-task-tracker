@@ -43,8 +43,6 @@ export async function updateTaskController() {
         break;
     }
   } catch (err) {
-    console.log(
-      `Ocorreu um erro ao atualizar a nova tarefa: ${err.code} - ${err.message} `,
-    );
+    throw err;
   }
 }

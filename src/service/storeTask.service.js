@@ -11,9 +11,7 @@ export async function storeTask(data) {
     tasks = await fetchAllTasks();
   } catch (err) {
     if (err.code === 'ENOENT') {
-      console.log(
-        'O arquivo de tasks ainda não existe, será criado abaixo!',
-      );
+      console.log('O arquivo de tasks ainda não existe, será criado abaixo!');
       tasks = [];
     }
   }
@@ -23,9 +21,6 @@ export async function storeTask(data) {
   try {
     await fs.writeFile(dbPath, JSON.stringify(tasks));
   } catch (err) {
-    throw new AppError(
-      err?.code || 'UNKNOWN_ERROR',
-      err.message,
-    );
+    throw new AppError(err?.code || err?.name || 'UNKNOWN_ERROR', err?.message);
   }
 }

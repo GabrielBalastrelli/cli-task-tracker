@@ -11,6 +11,6 @@ export async function fetchAllTasks() {
 
     return JSON.parse(tasks);
   } catch (err) {
-    throw new Error(err?.code || 'UNKNOWN_ERROR', err?.message);
+    throw new Error(err?.code || err?.name || 'UNKNOWN_ERROR', err?.message);
   }
 }

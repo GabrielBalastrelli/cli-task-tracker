@@ -7,18 +7,13 @@ export async function updateStoreTask(...tasks) {
   const dbPath = path.join(dirname, '..', 'db', 'db.json');
 
   try {
-    await fs.writeFile(
-      dbPath,
-      JSON.stringify(...tasks),
-      'utf-8',
-    );
+    await fs.writeFile(dbPath, JSON.stringify(...tasks), 'utf-8');
 
     return;
   } catch (err) {
     throw new AppError(
-      err.code || 404,
-      err?.message ||
-        'Erro ao atualizar o arquivo com as tarefas!',
+      err?.code || err?.name || 404,
+      err?.message || 'Erro ao atualizar o arquivo com as tarefas!',
     );
   }
 }

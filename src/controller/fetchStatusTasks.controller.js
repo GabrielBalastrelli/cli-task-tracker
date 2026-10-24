@@ -17,6 +17,6 @@ export async function fetchStatusTasksController(status, inIncompleteTask) {
       showTask(task, index);
     });
   } catch (err) {
-    console.log(`ERRO => ${err.code} - ${err.message}`);
+    throw err;
   }
 }

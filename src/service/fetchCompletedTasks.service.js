@@ -13,12 +13,12 @@ export async function fetchCompletedTasks() {
   } catch (err) {
     if (err.code === 'ENOENT') {
       throw new AppError(
-        err.code || 'UNKNOWN_ERROR',
+        err?.code || 'UNKNOWN_ERROR',
         'O arquivo com as tarefas não foi encontrado',
       );
     }
     throw new AppError(
-      err.code || 'UNKNOWN_ERROR',
+      err?.code || err?.name || 'UNKNOWN_ERROR',
       'Erro ao buscar as tarefas!',
     );
   }
